@@ -1,0 +1,162 @@
+*{box-sizing:border-box}html{background:#11151b;scroll-behavior:smooth}body{margin:0;color:#fff;font-family:Arial,Helvetica,sans-serif}.mobile{max-width:440px;margin:0 auto;background:#17191d;box-shadow:0 0 30px #0009}.panel{position:relative;isolation:isolate;width:100%;height:clamp(390px,135vw,590px);overflow:hidden}.photo,.shade{position:absolute;inset:0}.photo{background-image:url('ministerios.png');background-size:auto 200%;background-repeat:no-repeat;transition:transform .45s ease}.louvor .photo{background-position:left top}.infantil .photo{background-position:right top}.biblico .photo{background-position:left bottom}.social .photo{background-position:right bottom}.shade{background:linear-gradient(180deg,rgba(2,8,18,.48),rgba(2,8,18,.23) 42%,rgba(3,9,18,.56));z-index:1}.panel-inner{position:relative;z-index:2;height:100%;padding:clamp(48px,17vw,76px) 8% clamp(48px,15vw,73px);display:flex;flex-direction:column;justify-content:space-between;align-items:center}.identity{width:100%;max-width:300px;text-shadow:0 2px 4px #0009}.letters{display:flex;justify-content:flex-start;color:var(--accent)}.letters span{display:grid;place-items:center;width:clamp(62px,18vw,78px);height:clamp(62px,18vw,78px);border:2px solid currentColor;border-radius:50%;font-size:clamp(48px,13vw,62px);font-weight:900;line-height:1;letter-spacing:-.07em;text-indent:-.07em}.letters .fire svg{width:73%;height:73%;filter:drop-shadow(0 2px 2px #0004)}.church{margin:8px 0 3px;font-size:11px;font-weight:700;letter-spacing:.16em}.identity h1,.identity h2{font-size:clamp(17px,5vw,22px);line-height:1.15;font-weight:800;margin:0;text-transform:uppercase}.louvor{--accent:#168fee}.infantil{--accent:#f2ce3d}.biblico{--accent:#3dd743}.social{--accent:#fff}.panel button{font-family:inherit;cursor:pointer;color:#fff;background:#0004;border:3px solid #fff;border-radius:50px;padding:16px 32px;min-width:185px;font-size:16px;font-weight:800;transition:background .2s,color .2s,transform .2s}.panel button:hover,.panel button:focus-visible{color:#121621;background:#fff;transform:translateY(-2px)}.panel button:focus-visible,.close:focus-visible,dialog a:focus-visible{outline:3px solid #7ab5ff;outline-offset:3px}.panel:hover .photo{transform:scale(1.025)}.notice{margin:0;padding:14px;background:#11151b;color:#bbb;font-size:11px;text-align:center}dialog{width:min(90vw,390px);border:0;border-radius:14px;background:#fff;color:#171b24;padding:22px;box-shadow:0 15px 60px #0007}dialog::backdrop{background:#050810ba}.dialog-head{display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:.12em;color:#5d6476;font-weight:800}.close{border:0;background:#f0f1f3;border-radius:50%;font-size:23px;width:36px;height:36px;cursor:pointer}dialog h2{font-size:24px;margin:24px 0 12px}dialog p{font-size:15px;line-height:1.6;color:#424b58}.small{font-size:12px;color:#737c89}dialog a{margin-top:12px;display:inline-block;background:#22294d;color:white;border-radius:6px;padding:13px 16px;font-size:12px;font-weight:800}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+/* Alinhamento da marca e dos títulos nos painéis móveis */
+.panel-inner{padding-top:clamp(24px,8vw,36px)}
+.identity{text-align:center}
+.letters{justify-content:center}
+.panel-inner{padding-top:clamp(12px,4vw,16px)}
+/* A marca, o nome da igreja e o título compartilham o mesmo eixo central. */
+.panel .panel-inner{align-items:center}
+.panel .identity{width:100%;max-width:none;display:flex;flex-direction:column;align-items:center;text-align:center}
+.panel .letters{width:100%;justify-content:center}
+.panel .identity .church,.panel .identity h1,.panel .identity h2{width:100%;text-align:center}
+/* Cabeçalho em tons quentes para a prévia móvel */
+.mobile-shell{max-width:440px;margin:0 auto;background:#fff9ef;box-shadow:0 0 30px #0009}
+.mobile{box-shadow:none}
+.site-header{min-height:86px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fffaf1;border-top:4px solid #ba511f;border-bottom:1px solid #e8d3bc;color:#50231d}
+.site-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#51251c;min-width:0}
+.site-brand-mark{display:grid;place-items:center;width:45px;height:45px;flex:0 0 45px;color:#ad421b}
+.site-brand-mark svg{width:100%;height:100%}
+.site-brand-copy{display:flex;flex-direction:column;line-height:1.03}
+.site-brand-copy strong,.site-brand-copy b{font-size:15px;font-weight:900;letter-spacing:.01em}
+.site-brand-copy b{color:#a13b19}
+.site-brand-copy small{margin-top:5px;font-size:8px;font-weight:800;letter-spacing:.1em;color:#765147}
+.menu-toggle{display:flex;align-items:center;gap:7px;border:1px solid #b86e4b;border-radius:8px;background:#fff;color:#59291e;padding:10px 11px;font-size:11px;font-weight:900;letter-spacing:.06em;cursor:pointer}
+.menu-toggle svg{width:19px;height:19px}
+.menu-toggle:hover,.menu-toggle[aria-expanded="true"]{background:#63291e;color:#fff;border-color:#63291e}
+.mobile-menu{padding:5px 18px 12px;background:#fffaf1;border-bottom:1px solid #e8d3bc}
+.mobile-menu[hidden]{display:none}
+.mobile-menu a{display:flex;align-items:center;justify-content:space-between;padding:13px 4px;color:#4d241d;text-decoration:none;font-size:14px;font-weight:700;border-bottom:1px solid #efe2d2}
+.mobile-menu a:last-child{border-bottom:0}.mobile-menu a span{color:#aa441e}
+.site-brand:focus-visible,.menu-toggle:focus-visible,.mobile-menu a:focus-visible{outline:3px solid #cf731c;outline-offset:3px}
+/* Divisões claras e identidade vibrante no topo. */
+html,body{background:#fff4e4}
+.mobile-shell{background:#fff;box-shadow:0 8px 28px #d9752e25}
+.site-header{background:#fff;border-top:5px solid #f39a1d;border-bottom:1px solid #ffdfc4;color:#c43a00}
+.site-brand{color:#c43a00}.site-brand-mark{color:#c43a00}
+.site-brand-copy strong{color:#c43a00}.site-brand-copy b{color:#a51f32}.site-brand-copy small{color:#a52d00}
+.menu-toggle{background:#c43a00;border-color:#c43a00;color:#fff}
+.menu-toggle:hover,.menu-toggle[aria-expanded="true"]{background:#a51f32;border-color:#a51f32;color:#fff}
+.mobile-menu{background:#fffaf3;border-color:#ffdfc4}
+.mobile-menu a{color:#a51f32;border-color:#fbe2ce}.mobile-menu a span{color:#ad3500}
+.panel::after{content:'';position:absolute;z-index:3;left:0;right:0;bottom:0;height:9px;background:#fff;pointer-events:none}
+.notice{background:#fff;color:#a52d00}
+dialog a{background:#c43a00;color:#fff}
+/* Ocupa toda a tela, preservando a leitura no celular. */
+.mobile-shell,.mobile{width:100%;max-width:none;margin:0;box-shadow:none}
+.panel::after{height:3px}
+@media(min-width:700px){
+ .mobile{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+ .site-header{padding-left:clamp(18px,3vw,44px);padding-right:clamp(18px,3vw,44px)}
+ .panel{height:clamp(470px,75vh,720px)}
+ .panel::after{top:0;bottom:0;left:auto;right:0;width:3px;height:auto}
+ .notice{grid-column:1 / -1}
+}
+@media(min-width:1000px){
+ .mobile{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .panel{height:calc(100svh - 86px);min-height:460px;max-height:none}
+ .panel-inner{padding:clamp(20px,4vh,40px) 5% clamp(40px,9vh,80px)}
+ .letters span{width:clamp(50px,5.3vw,78px);height:clamp(50px,5.3vw,78px);font-size:clamp(38px,4vw,62px)}
+ .identity h1,.identity h2{font-size:clamp(14px,1.35vw,20px)}
+ .panel button{min-width:145px;padding:14px 22px;font-size:14px}
+}
+/* Arte do pastor e atalhos de contato */
+.pastor-art{width:100%;background:#fff;display:flex;justify-content:center;align-items:flex-start;overflow:hidden}
+.pastor-art img{display:block;width:min(100%,820px);height:auto;object-fit:contain}
+.quick-contact{position:fixed;right:clamp(10px,2vw,24px);bottom:clamp(14px,3vh,28px);z-index:8;display:flex;flex-direction:column;align-items:flex-end;gap:9px}
+.quick-contact a{display:flex;align-items:center;justify-content:flex-start;gap:9px;min-width:144px;min-height:48px;padding:10px 15px;border-radius:50px;background:#087b45;color:#fff;text-decoration:none;font-size:15px;font-weight:800;line-height:1;box-shadow:0 4px 18px #002a1940;border:2px solid #fff}
+.quick-contact a:hover{background:#066135}.quick-contact a:focus-visible{outline:3px solid #f39a1d;outline-offset:3px}.quick-contact svg{width:23px;height:23px;flex:0 0 23px}
+@media(min-width:700px){.pastor-art{grid-column:1 / -1}}
+@media(max-width:480px){.quick-contact{right:10px;bottom:12px}}
+
+/* Contatos compactos, com área de toque ampliada sem aumentar o visual. */
+.quick-contact{gap:10px}
+.quick-contact a{position:relative;min-width:96px;min-height:34px;padding:5px 9px;gap:5px;font-size:13px;border-width:1px}
+.quick-contact a::before{content:"";position:absolute;inset:-4px 0}
+.quick-contact svg{width:15px;height:15px;flex:0 0 15px}
+
+/* Boas-vindas e atividades da comunidade */
+.welcome-section,.activities-section{grid-column:1 / -1;color:#2d3150}
+.welcome-section{background:linear-gradient(145deg,#fff7e2 0%,#ffe8d0 60%,#fff4dc 100%);padding:58px 22px 64px;position:relative;overflow:hidden}
+.welcome-section::before{content:'';position:absolute;width:170px;height:170px;border:25px solid #ffb21d24;border-radius:50%;right:-80px;top:-70px}
+.welcome-inner,.activities-inner{max-width:1080px;margin:auto;position:relative}
+.section-kicker{margin:0 0 13px;color:#b33e10;font-size:12px;font-weight:900;letter-spacing:.14em;line-height:1.5}
+.welcome-section h2,.activities-section h2{margin:0;color:#bf321a;font-size:clamp(36px,8.5vw,62px);line-height:1.04;letter-spacing:-.04em}
+.welcome-section h2 span{color:#e16a0e}
+.welcome-rule{height:5px;width:55px;background:#ee9d16;border-radius:5px;margin:24px 0}
+.welcome-copy{max-width:650px;font-size:17px;line-height:1.65;margin:0;color:#4c3c39}
+.pastor-signature{display:flex;flex-direction:column;gap:4px;margin:24px 0;color:#ad321a}
+.pastor-signature strong{font-size:19px}.pastor-signature span{font-size:14px;color:#6c4c43}
+.community-link,.activity-link{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 21px;border-radius:40px;text-decoration:none;font-size:14px;font-weight:800;background:#bc3319;color:white;box-shadow:0 6px 16px #bd3d1b24}
+.community-link:hover,.activity-link:hover{background:#99250e}
+.community-link:focus-visible,.activity-link:focus-visible{outline:3px solid #f39812;outline-offset:3px}
+.activities-section{background:#fff;padding:66px 20px 74px}
+.activities-section h2{font-size:clamp(34px,8vw,56px)}
+.activities-section h2 span{color:#e06b0e}
+.activities-intro{color:#535c6c;font-size:16px;line-height:1.6;max-width:600px;margin:18px 0 28px}
+.activities-grid{display:grid;grid-template-columns:1fr;gap:13px}
+.activity-card{position:relative;overflow:hidden;border-radius:20px;padding:21px 22px;border:1px solid transparent;min-height:172px}
+.activity-card::after{content:'';position:absolute;width:105px;height:105px;border:18px solid currentColor;opacity:.07;border-radius:50%;right:-35px;top:-38px}
+.activity-card.music{background:#fff2cb;border-color:#fbe4a1;color:#a75903}
+.activity-card.jiu{background:#e6f5ff;border-color:#c8e8fd;color:#15689e}
+.activity-card.judo{background:#e8f7e7;border-color:#ccebd0;color:#27803c}
+.activity-card.theology{background:#ffebe7;border-color:#ffd2c7;color:#bd3a25}
+.activity-icon{height:41px;width:41px;border-radius:13px;background:#ffffffbd;display:grid;place-items:center;color:inherit;font-size:30px;font-weight:bold;margin-bottom:14px}
+.activity-icon svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.activity-type{margin:0 0 6px;font-weight:900;letter-spacing:.09em;font-size:11px}
+.activity-card h3{margin:0 0 8px;font-size:22px;letter-spacing:-.025em}
+.activity-card>p:last-child{margin:0;max-width:370px;color:#3f4a55;font-size:15px;line-height:1.5}
+.activities-note{font-size:14px;line-height:1.5;color:#515a66;margin:22px 0 19px}
+.activity-link{background:#c73e1a}
+@media(min-width:600px){.activities-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.welcome-section,.activities-section{padding-left:clamp(28px,6vw,80px);padding-right:clamp(28px,6vw,80px)}}
+@media(min-width:1100px){.activities-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.activity-card{min-height:230px}}
+
+
+/* Faixa contínua de depoimentos, com três artes visíveis no celular. */
+.testimonies{grid-column:1 / -1;overflow:hidden;background:#fff;padding:42px 0 40px;color:#24324a}
+.testimonies-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px 18px;max-width:1180px;margin:auto}
+.testimonies-heading p{margin:0 0 6px;font-size:11px;letter-spacing:.12em;font-weight:900;color:#aa3219}
+.testimonies-heading h2{margin:0;color:#bd331a;font-size:clamp(24px,5.8vw,38px);letter-spacing:-.035em;line-height:1.1}
+.testimonies-heading h2 span{color:#e26912}
+.testimonies-toggle{flex:none;border:1px solid #d74d26;border-radius:30px;color:#ac3215;background:#fff;font-size:12px;font-weight:800;min-height:40px;padding:0 13px;cursor:pointer}
+.testimonies-toggle:focus-visible{outline:3px solid #f49b1e;outline-offset:2px}
+.testimonies-viewport{overflow:hidden;width:100%}
+.testimonies-track{width:max-content;display:flex;animation:testimonies-flow 32s linear infinite;will-change:transform}
+.testimonies.is-paused .testimonies-track{animation-play-state:paused}
+.testimonies-strip{display:flex;flex:0 0 auto;gap:8px;padding-right:8px}
+.testimony-card{flex:0 0 auto;width:calc((100vw - 16px) / 3);border-radius:10px;overflow:hidden;background:#fff7ed;box-shadow:0 3px 12px #9c4f201f}
+.testimony-picture{height:clamp(105px,35vw,220px);background-size:cover;background-position:center;background-repeat:no-repeat}
+.testimony-celebracao .testimony-picture{background-image:url('foto-fe-que-une.jpg')}
+.testimony-pastor .testimony-picture{background-image:url('foto-palavra-fe.jpg')}
+.testimony-culto .testimony-picture{background-image:url('foto-louvor.jpg')}
+.testimony-infantil .testimony-picture{background-image:url('foto-familia.jpg')}
+.testimony-biblia .testimony-picture{background-image:url('foto-palavra.jpg')}
+.testimony-social .testimony-picture{background-image:url('foto-cuidado.jpg')}
+.testimony-card .testimony-picture{background-size:115% auto;background-position:center}
+.testimony-copy{min-height:108px;padding:10px 9px 12px;background:#fff3e4;display:flex;flex-direction:column;gap:5px}
+.testimony-culto .testimony-copy{background:#e7f5ff}.testimony-infantil .testimony-copy{background:#fff3c8}.testimony-biblia .testimony-copy{background:#e8f7e9}.testimony-social .testimony-copy{background:#ffebe6}
+.testimony-copy span{font-size:9px;line-height:1.2;letter-spacing:.07em;font-weight:900;color:#a13518}
+.testimony-copy strong{font-size:clamp(13px,3.4vw,19px);line-height:1.15;color:#a82c19}
+.testimony-copy small{margin-top:auto;font-size:11px;line-height:1.25;color:#4b5260}
+.testimonies-note{margin:15px 16px 0;font-size:12px;line-height:1.4;color:#555e6c}
+@keyframes testimonies-flow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(min-width:700px){.testimonies{padding:55px 0}.testimonies-heading{padding-left:24px;padding-right:24px}.testimony-copy{min-height:106px;padding:15px 18px}.testimony-copy span{font-size:11px}.testimony-copy small{font-size:13px}.testimonies-note{max-width:1132px;margin:18px auto 0;padding:0 24px}}
+@media(prefers-reduced-motion:reduce){.testimonies-track{animation-play-state:paused}.testimonies:not(.is-paused).motion-enabled .testimonies-track{animation-play-state:running}}
+
+/* Pomba iluminada sobre a arte do pastor. */
+.pastor-art .pastor-canvas{position:relative;width:min(100%,820px);line-height:0;overflow:hidden}
+.pastor-art .pastor-base{display:block;width:100%;height:auto}
+.pastor-art .dove-overlay{position:absolute;z-index:1;top:0.2%;left:-7%;width:50%;height:auto;pointer-events:none}
+
+/* O primeiro plano da imagem preserva a palavra e a mão acima da pomba. */
+.pastor-art .pastor-canvas{isolation:isolate}
+.pastor-art .pastor-front{position:absolute;inset:0;z-index:2;display:block;width:100%;height:auto;pointer-events:none;mix-blend-mode:multiply;clip-path:polygon(24% 0,36% 0,36% 26%,0 26%,0 9%,24% 9%)}
+/* O recorte acompanha a transparência da luz, sem escurecer o restante da imagem. */
+.pastor-art .pastor-front{-webkit-mask-image:url('pomba-flare-dourado.png');mask-image:url('pomba-flare-dourado.png');-webkit-mask-size:50% auto;mask-size:50% auto;-webkit-mask-position:-14% 0.25%;mask-position:-14% 0.25%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+
+/* Rodapé institucional */
+.church-footer{background:radial-gradient(ellipse at 50% 0,#4a2d11 0,#1b130e 38%,#100f0f 78%);color:#fff;text-align:center;padding:3.2rem 1.2rem 7rem;border-top:1px solid #c6964d}.footer-brand{display:flex;align-items:center;flex-direction:column;gap:.3rem}.footer-flame{font-size:1.5rem;line-height:1;color:#e6bb71}.footer-brand strong{font-size:1.45rem;letter-spacing:.07em}.footer-brand strong span{color:#e8bb72}.footer-brand small{font-size:.72rem;color:#dac8a9;letter-spacing:.18em}.footer-message{max-width:24rem;margin:1.2rem auto 1.5rem;color:#ede2d4;line-height:1.55}.footer-nav{display:flex;justify-content:center;gap:.9rem 1.4rem;flex-wrap:wrap;margin:0 auto 1.5rem}.footer-nav a,.footer-community{color:#fff;text-decoration:none}.footer-nav a:hover,.footer-nav a:focus-visible{text-decoration:underline;color:#f2cf92}.footer-community{display:inline-block;border:1px solid #caa363;border-radius:99px;padding:.75rem 1.1rem;font-weight:700}.footer-community:hover,.footer-community:focus-visible{background:#eac17d;color:#24170b}.footer-bottom{border-top:1px solid #ffffff26;color:#d7c8b5;font-size:.8rem;line-height:1.5;margin:2rem auto 0;padding-top:1.25rem;max-width:36rem}
+
+/* Informações do rodapé em partículas douradas */
+.church-footer{position:relative;overflow:hidden;padding:1.5rem 1rem 6.5rem;background:radial-gradient(ellipse at center,#38240d 0%,#15100b 55%,#09090b 100%);border-top:1px solid #a77b3e}.footer-particles{position:relative;width:min(100%,700px);height:clamp(240px,66vw,350px);margin:auto;touch-action:pan-y}.footer-particles canvas{display:block;width:100%;height:100%}.footer-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.footer-accessible:focus-within{clip:auto;width:auto;height:auto;overflow:visible;white-space:normal;position:relative;background:#160f08;padding:1rem}.footer-accessible a{color:#fff;margin:.35rem;display:inline-block}.footer-particle-controls{display:flex;justify-content:center;gap:.7rem}.footer-particle-controls button{display:grid;place-items:center;width:2.4rem;height:2.4rem;border:1px solid #a47c42;border-radius:50%;background:#171109;color:#f9dfa8;cursor:pointer;font-size:1.1rem}.footer-particle-controls button:hover,.footer-particle-controls button:focus-visible{background:#dfb667;color:#211609;outline:2px solid #fff;outline-offset:2px}
+
+.particle-link{position:absolute;left:5%;width:90%;height:24%;border-radius:.5rem}.particle-link[hidden]{display:none}.particle-link-top{top:29%}.particle-link-bottom{top:54%}.particle-link:focus-visible{outline:2px solid #fff;outline-offset:2px}
