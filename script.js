@@ -7,9 +7,9 @@ const menuButton=document.querySelector('.menu-toggle'),menu=document.querySelec
  const section=document.querySelector('.testimonies');
  if(!section)return;
  const toggle=section.querySelector('.testimonies-toggle');
- let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let paused = false;
  function refresh(){section.classList.toggle('is-paused',paused);toggle.textContent=paused?'Reproduzir':'Pausar';toggle.setAttribute('aria-pressed',String(paused));toggle.setAttribute('aria-label',paused?'Reproduzir movimento dos depoimentos':'Pausar movimento dos depoimentos')}
- toggle.addEventListener('click',()=>{paused=!paused;section.classList.add('motion-enabled');refresh()});
+ toggle.addEventListener('click',()=>{paused=!paused;refresh()});
  refresh();
 })();
 

@@ -4,19 +4,52 @@
  const ctx=canvas.getContext('2d'),buffer=document.createElement('canvas'),bc=buffer.getContext('2d',{willReadFrequently:true});
  const year=new Date().getFullYear();
  const slides=[['AD SILOÉ','EM CHAMAS'],['MATRIZ','BENTO RIBEIRO'],['UMA IGREJA','DE PORTAS ABERTAS'],['PARA VOCÊ','E SUA FAMÍLIA'],['INÍCIO','PASTOR FÁBIO'],['AÇÕES E CURSOS','FACEBOOK'],['CONHEÇA NOSSA','COMUNIDADE'],['© '+year+' AD SILOÉ','BENTO RIBEIRO']];
- const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let paused=reduce,visible=true,index=0,points=[],particles=[],w=0,h=0,raf=0,last=0,elapsed=0,pointer={x:-9999,y:-9999};
+ const slideDuration = 2800;
+ let paused = false, inView = !('IntersectionObserver' in window);
+ let index = 0, points = [], particles = [], w = 0, h = 0;
+ let raf = 0, lastFrame = null, elapsed = 0;
+ const pointer = {x: -9999, y: -9999};
  function fitFont(text,maxWidth,base){let size=base;do{bc.font=`900 ${size}px Arial, sans-serif`;if(bc.measureText(text).width<=maxWidth)break;size--}while(size>12);return size}
  function pointsFor(lines){bc.clearRect(0,0,w,h);bc.textAlign='center';bc.textBaseline='middle';bc.fillStyle='#fff';const base=Math.min(w*.115,h*.22,68);for(let i=0;i<lines.length;i++){const size=fitFont(lines[i],w*.9,base);bc.font=`900 ${size}px Arial, sans-serif`;bc.fillText(lines[i],w/2,h*(.41+i*.25))}const data=bc.getImageData(0,0,w,h).data,arr=[];const gap=Math.max(2.3,Math.sqrt(w*h/33000));for(let y=0;y<h;y+=gap)for(let x=0;x<w;x+=gap)if(data[(Math.floor(y)*Math.floor(w)+Math.floor(x))*4+3]>120)arr.push({x,y});return arr}
  const linkTop=document.getElementById('particle-link-top'),linkBottom=document.getElementById('particle-link-bottom');
  const slideLinks={4:[['#inicio','Ir para o início'],['#pastor','Conhecer o pastor Fábio']],5:[['#acoes-cursos','Ver ações e cursos'],['https://www.facebook.com/adsiloemchamas','Visitar o Facebook']],6:[['https://www.facebook.com/adsiloemchamas','Conhecer nossa comunidade'],['https://www.facebook.com/adsiloemchamas','Conhecer nossa comunidade']]};
  function syncLinks(){let links=slideLinks[index]||[];[linkTop,linkBottom].forEach((el,i)=>{let item=links[i];el.hidden=!item;if(item){el.href=item[0];el.setAttribute('aria-label',item[1]);if(item[0].startsWith('https:')){el.target='_blank';el.rel='noopener noreferrer'}else{el.removeAttribute('target');el.removeAttribute('rel')}}})}
  function assign(){syncLinks();points=pointsFor(slides[index]);if(!particles.length){particles=points.map(p=>({x:w/2+(Math.random()-.5)*w*.6,y:h/2+(Math.random()-.5)*h*.6,seed:Math.random()*6.3,size:1+Math.random()*.8}))}while(particles.length<points.length){let p=particles[particles.length%Math.max(1,particles.length)];particles.push({x:p?p.x:w/2,y:p?p.y:h/2,seed:Math.random()*6.3,size:1+Math.random()*.8})}for(let i=0;i<particles.length;i++){let p=particles[i],q=points[i%points.length];p.tx=q.x;p.ty=q.y;p.active=i<points.length}}
- function resize(){const r=stage.getBoundingClientRect();w=Math.max(1,Math.round(r.width));h=Math.max(1,Math.round(r.height));const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);buffer.width=w;buffer.height=h;particles=[];assign();if(reduce)draw(0,true)}
+ function resize(){const r=stage.getBoundingClientRect();w=Math.max(1,Math.round(r.width));h=Math.max(1,Math.round(r.height));const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);buffer.width=w;buffer.height=h;particles=[];assign();draw(0,true)}
  function draw(delta,immediate=false){ctx.clearRect(0,0,w,h);for(const p of particles){let tx=p.tx+Math.sin(elapsed*.002+p.ty*.025)*1.2,ty=p.ty+Math.sin(elapsed*.0025+p.tx*.025)*1.7;const dx=tx-pointer.x,dy=ty-pointer.y,d=Math.hypot(dx,dy);if(d<65&&d>0){let f=(1-d/65)*10;tx+=dx/d*f;ty+=dy/d*f}let ease=immediate?1:1-Math.pow(.88,Math.min(delta/16.67,3));p.x+=(tx-p.x)*ease;p.y+=(ty-p.y)*ease;if(p.active){let a=.76+.24*(.5+.5*Math.sin(elapsed*.003+p.seed));ctx.fillStyle=`rgba(255, ${Math.round(195+35*Math.sin(p.seed)**2)}, ${Math.round(115+80*Math.sin(p.seed*.8)**2)}, ${a})`;ctx.fillRect(p.x,p.y,p.size,p.size)}}}
- function frame(ts){if(!visible||paused){raf=0;last=0;return}if(!last)last=ts;let delta=Math.min(ts-last,50);last=ts;elapsed+=delta;if(elapsed>=2800){elapsed=0;index=(index+1)%slides.length;assign()}draw(delta);raf=requestAnimationFrame(frame)}
- function start(){if(!raf&&visible&&!paused)raf=requestAnimationFrame(frame)}
+ function frame(timestamp) {
+  const delta = lastFrame === null ? 0 : timestamp - lastFrame;
+  lastFrame = timestamp;
+  elapsed += delta;
+  if (elapsed >= slideDuration) {
+   elapsed %= slideDuration;
+   index = (index + 1) % slides.length;
+   assign();
+  }
+  draw(delta);
+  raf = requestAnimationFrame(frame);
+ }
+ function syncPlayback() {
+  const playing = inView && !paused && !document.hidden;
+  if (playing && !raf) raf = requestAnimationFrame(frame);
+  if (!playing && raf) {
+   cancelAnimationFrame(raf);
+   raf = 0;
+   lastFrame = null;
+  }
+ }
  function move(step){index=(index+step+slides.length)%slides.length;elapsed=0;assign();if(paused)draw(0,true)}
- document.getElementById('footer-prev').addEventListener('click',()=>move(-1));document.getElementById('footer-next').addEventListener('click',()=>move(1));const toggle=document.getElementById('footer-pause');function refresh(){toggle.textContent=paused?'▶':'Ⅱ';toggle.setAttribute('aria-label',paused?'Reproduzir animação':'Pausar animação');toggle.setAttribute('aria-pressed',String(paused))}toggle.addEventListener('click',()=>{paused=!paused;refresh();start()});
+ document.getElementById('footer-prev').addEventListener('click',()=>move(-1));document.getElementById('footer-next').addEventListener('click',()=>move(1));const toggle=document.getElementById('footer-pause');function refresh(){toggle.textContent=paused?'▶':'Ⅱ';toggle.setAttribute('aria-label',paused?'Reproduzir animação':'Pausar animação');toggle.setAttribute('aria-pressed',String(paused))}toggle.addEventListener('click',()=>{paused=!paused;refresh();syncPlayback()});
  canvas.addEventListener('pointermove',e=>{let r=canvas.getBoundingClientRect();pointer.x=e.clientX-r.left;pointer.y=e.clientY-r.top});for(const type of ['pointerleave','pointerup','pointercancel'])canvas.addEventListener(type,()=>{pointer.x=-9999;pointer.y=-9999});
- if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)start()},{threshold:.08}).observe(stage);window.addEventListener('resize',resize,{passive:true});document.addEventListener('visibilitychange',()=>{visible=!document.hidden;if(visible)start()});resize();refresh();start();
+ if ('IntersectionObserver' in window) {
+  new IntersectionObserver(([entry]) => {
+   inView = entry.isIntersecting;
+   syncPlayback();
+  }).observe(stage);
+ }
+ window.addEventListener('resize', resize, {passive: true});
+ document.addEventListener('visibilitychange', syncPlayback);
+ resize();
+ refresh();
+ syncPlayback();
 })();
