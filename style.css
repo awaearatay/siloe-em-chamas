@@ -111,35 +111,77 @@ dialog a{background:#c43a00;color:#fff}
 @media(min-width:1100px){.activities-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.activity-card{min-height:230px}}
 
 
-/* Faixa contínua de depoimentos, com três artes visíveis no celular. */
-.testimonies{grid-column:1 / -1;overflow:hidden;background:#fff;padding:42px 0 40px;color:#24324a}
-.testimonies-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px 18px;max-width:1180px;margin:auto}
-.testimonies-heading p{margin:0 0 6px;font-size:11px;letter-spacing:.12em;font-weight:900;color:#aa3219}
-.testimonies-heading h2{margin:0;color:#bd331a;font-size:clamp(24px,5.8vw,38px);letter-spacing:-.035em;line-height:1.1}
-.testimonies-heading h2 span{color:#e26912}
-.testimonies-toggle{flex:none;border:1px solid #d74d26;border-radius:30px;color:#ac3215;background:#fff;font-size:12px;font-weight:800;min-height:40px;padding:0 13px;cursor:pointer}
-.testimonies-toggle:focus-visible{outline:3px solid #f49b1e;outline-offset:2px}
-.testimonies-viewport{overflow:hidden;width:100%}
-.testimonies-track{width:max-content;display:flex;animation:testimonies-flow 24s linear infinite;will-change:transform}
-.testimonies.is-paused .testimonies-track{animation-play-state:paused}
-.testimonies-strip{display:flex;flex:0 0 auto;gap:8px;padding-right:8px}
-.testimony-card{flex:0 0 auto;width:calc((100vw - 16px) / 3);border-radius:10px;overflow:hidden;background:#fff7ed;box-shadow:0 3px 12px #bf321a1f}
-.testimony-picture{height:clamp(105px,35vw,220px);background-size:cover;background-position:center;background-repeat:no-repeat}
-.testimony-celebracao .testimony-picture{background-image:url('foto-fe-que-une.jpg')}
-.testimony-pastor .testimony-picture{background-image:url('foto-palavra-fe.jpg')}
-.testimony-culto .testimony-picture{background-image:url('foto-louvor.jpg')}
-.testimony-infantil .testimony-picture{background-image:url('foto-familia.jpg')}
-.testimony-biblia .testimony-picture{background-image:url('foto-palavra.jpg')}
-.testimony-social .testimony-picture{background-image:url('foto-cuidado.jpg')}
-.testimony-card .testimony-picture{background-size:115% auto;background-position:center}
-.testimony-copy{min-height:108px;padding:10px 9px 12px;background:#fff3e4;display:flex;flex-direction:column;gap:5px}
-.testimony-culto .testimony-copy{background:#e7f5ff}.testimony-infantil .testimony-copy{background:#fff3c8}.testimony-biblia .testimony-copy{background:#e8f7e9}.testimony-social .testimony-copy{background:#ffebe6}
-.testimony-copy span{font-size:9px;line-height:1.2;letter-spacing:.07em;font-weight:900;color:#a13518}
-.testimony-copy strong{font-size:clamp(13px,3.4vw,19px);line-height:1.15;color:#a82c19}
-.testimony-copy small{margin-top:auto;font-size:11px;line-height:1.25;color:#4b5260}
-.testimonies-note{margin:15px 16px 0;font-size:12px;line-height:1.4;color:#555e6c}
-@keyframes testimonies-flow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(min-width:700px){.testimonies{padding:55px 0}.testimonies-heading{padding-left:24px;padding-right:24px}.testimony-copy{min-height:106px;padding:15px 18px}.testimony-copy span{font-size:11px}.testimony-copy small{font-size:13px}.testimonies-note{max-width:1132px;margin:18px auto 0;padding:0 24px}}
+/* Duas faixas contínuas em direções opostas. */
+.testimonies {
+  --carousel-gap: clamp(6px, 1vw, 12px);
+  grid-column: 1 / -1;
+  overflow: hidden;
+  background: #fff;
+  padding: clamp(36px, 5vw, 56px) 0;
+  color: #24324a;
+}
+.testimonies-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 clamp(16px, 3vw, 24px) 18px;
+  max-width: 1180px;
+  margin: auto;
+}
+.testimonies-heading p { margin: 0 0 6px; font-size: 11px; letter-spacing: .12em; font-weight: 900; color: #aa3219; }
+.testimonies-heading h2 { margin: 0; color: #bd331a; font-size: clamp(24px, 5.8vw, 38px); letter-spacing: -.035em; line-height: 1.1; }
+.testimonies-heading h2 span { color: #c64d15; }
+.testimonies-toggle {
+  flex: none;
+  border: 1px solid #d74d26;
+  border-radius: 30px;
+  color: #ac3215;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  min-height: 44px;
+  padding: 0 13px;
+  cursor: pointer;
+}
+.testimonies-toggle:focus-visible { outline: 3px solid #f49b1e; outline-offset: 2px; }
+.testimonies-lanes { display: grid; gap: 5px; }
+.testimonies-viewport { overflow: hidden; width: 100%; }
+.testimonies-track {
+  display: flex;
+  width: max-content;
+  animation: testimonies-flow 19s linear infinite;
+}
+.testimonies-viewport--reverse .testimonies-track { animation-direction: reverse; }
+.testimonies.is-paused .testimonies-track { animation-play-state: paused; }
+.testimonies-strip { display: flex; flex: none; gap: var(--carousel-gap); padding-right: var(--carousel-gap); }
+.testimony-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  flex: none;
+  width: calc((100vw - 2 * var(--carousel-gap)) / 3);
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff2ea;
+}
+.testimony-picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #fff2ea;
+}
+.testimony-copy {
+  display: grid;
+  align-items: center;
+  min-height: 3rem;
+  padding: 8px clamp(8px, 1.8vw, 24px);
+  font-size: clamp(.8rem, 2vw, 1.1rem);
+  line-height: 1.2;
+  color: #a62d25;
+}
+@keyframes testimonies-flow { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* Pomba iluminada sobre a arte do pastor. */
 .pastor-art .pastor-canvas{position:relative;width:min(100%,820px);line-height:0;overflow:hidden}
