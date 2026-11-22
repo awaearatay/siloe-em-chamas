@@ -182,6 +182,17 @@ dialog a{background:#c43a00;color:#fff}
   border-radius: 10px;
   background: #fff2ea;
 }
+.testimonies-viewport--captions-top .testimony-card {
+  grid-template-rows: 1fr auto;
+}
+@media (max-width: 699px) {
+  .testimony-card {
+    width: calc((100vw - var(--carousel-gap)) / 2);
+  }
+  .testimony-copy {
+    font-size: .875rem;
+  }
+}
 .testimony-picture {
   display: block;
   width: 100%;
