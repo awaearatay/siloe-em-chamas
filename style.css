@@ -189,9 +189,6 @@ dialog a{background:#c43a00;color:#fff}
   .testimony-card {
     width: calc((100vw - var(--carousel-gap)) / 2);
   }
-  .testimony-copy {
-    font-size: .875rem;
-  }
 }
 .testimony-picture {
   display: block;
@@ -295,4 +292,71 @@ dialog a{background:#c43a00;color:#fff}
 .vo-link:focus-visible, .vo-form :is(input, textarea, button):focus-visible {
   outline: 3px solid #2455a6;
   outline-offset: 3px;
+}
+
+/* Tipografia para leitura no celular. */
+@media (width < 700px) {
+  body {
+    font-size: 1.125rem;
+  }
+
+  .church,
+  .notice,
+  .dialog-head,
+  dialog p,
+  .small,
+  dialog a,
+  .site-brand-copy strong,
+  .site-brand-copy b,
+  .site-brand-copy small,
+  .menu-toggle,
+  .mobile-menu a,
+  .panel button,
+  .quick-contact a,
+  .section-kicker,
+  .pastor-signature span,
+  .community-link,
+  .activity-link,
+  .activities-intro,
+  .activity-type,
+  .activity-card > p:last-child,
+  .activities-note,
+  .testimonies-heading p,
+  .testimonies-toggle,
+  .footer-brand small,
+  .footer-bottom,
+  .vo-kicker,
+  .vo-form label,
+  .vo-note {
+    font-size: 1.125rem;
+  }
+
+  .site-brand-copy {
+    line-height: 1.15;
+  }
+
+  .site-brand-copy small {
+    letter-spacing: .025em;
+  }
+
+  .menu-toggle,
+  .testimonies-toggle,
+  .dialog-head .close {
+    flex: 0 0 auto;
+  }
+
+  .dialog-head {
+    gap: 8px;
+  }
+
+  .identity h1,
+  .identity h2 {
+    font-size: clamp(1.25rem, 5.5vw, 1.5rem);
+  }
+
+  .testimony-copy {
+    font-size: 1.375rem;
+    line-height: 1.05;
+    padding-block: 0;
+  }
 }
